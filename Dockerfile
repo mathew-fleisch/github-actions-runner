@@ -48,13 +48,12 @@ RUN . ${ASDF_DATA_DIR}/asdf.sh  \
     && asdf plugin add terraform \
     && asdf plugin add terragrunt \
     && asdf plugin add tflint \
-    && asdf plugin add yq \
-    && asdf install
+    && asdf plugin add yq
 
 
 # Source asdf and execute entrypoint
 COPY --chown=github:github entrypoint.sh ./entrypoint.sh
 RUN sudo chmod u+x ./entrypoint.sh
-CMD /bin/sh -c ". ${ASDF_DATA_DIR}/asdf.sh && /home/github/entrypoint.sh"
+CMD /bin/sh -c ". ${ASDF_DATA_DIR}/asdf.sh && asdf install && /home/github/entrypoint.sh"
 
 
