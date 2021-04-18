@@ -12,32 +12,25 @@ docker build -t gha-runner .
 ## Run
 
 ```bash
-  # -e KUBECONFIG_CONTENTS="$(cat ~/.kube/config)"
-  # -e ACTION_LABELS
 
-# Platform runner will be on
-platform="arm64"
-# platform="x64"
-
-docker run -it --rm \
-  -e GIT_PAT="$GIT_TOKEN" \
-  -e GIT_OWNER="mathew-fleisch" \
-  -e GIT_REPO="github-actions-runner" \
-  -e RUNNER_PLATFORM="arm64" \
-  --name "gha-runner" \
-  gha-runner:latest
-
-
+# From Linux
 docker run -it --rm \
   -v /var/run/docker.sock:/var/run/docker.sock \
   --group-add $(stat -c '%g' /var/run/docker.sock) \
   -e GIT_PAT="$GIT_TOKEN" \
   -e GIT_OWNER="mathew-fleisch" \
   -e GIT_REPO="github-actions-runner" \
-  -e RUNNER_PLATFORM="arm64" \
   --name "gha-runner" \
   gha-runner:latest
 
+# From Mac
+docker run -it --rm \
+  -v /var/run/docker.sock:/var/rund/docker.sock \
+  -e GIT_PAT="$GIT_TOKEN" \
+  -e GIT_OWNER="mathew-fleisch" \
+  -e GIT_REPO="github-actions-runner" \
+  --name "gha-runner" \
+  mathewfleisch/github-actions-runner:latest
 
 
 ```

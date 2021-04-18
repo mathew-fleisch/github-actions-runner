@@ -7,7 +7,6 @@ ENV GIT_PAT ""
 ENV GIT_OWNER ""
 ENV GIT_REPO ""
 ENV LABELS "container-runner"
-ENV RUNNER_PLATFORM "x64"
 ENV RUNNER_WORKDIR "_work"
 ENV ASDF_DATA_DIR=/opt/asdf
 WORKDIR $ASDF_DATA_DIR
@@ -33,7 +32,7 @@ RUN rm /bin/sh && ln -s /bin/bash /bin/sh \
     && echo "export ASDF_DATA_DIR=${ASDF_DATA_DIR}" | tee -a /home/github/.bashrc \
     && echo ". ${ASDF_DATA_DIR}/asdf.sh" | tee -a /home/github/.bashrc
 
-# Install asdf dependencies (first download plugins, then apply versions found in .tool-versions file)
+# Install asdf dependencies
 USER github
 WORKDIR /home/github
 COPY .tool-versions /home/github/.

@@ -18,14 +18,21 @@ if [ -n "$KUBECONFIG_CONTENTS" ]; then
     mkdir -p ~/.kube
     echo "$KUBECONFIG_CONTENTS" > ~/.kube/config
 fi
-
+OS=linux
+[ "$(uname -m)" = "Darwin" ] && OS=osx;
+ARCH=$(uname -m)
+case $ARCH in
+  arm*) ARCH="arm";;
+  aarch64) ARCH="arm64";;
+  x86_64) ARCH="x64";;
+esac
 
 # The Github Action runner is installed in the entrypoint so that it always is running the latest version
 # If the agent is installed in the docker container, a new version of the docker container needs to be published
 # everytime a new version of the agent is released.
 GIT_RUNNER_VERSION=$(curl -s https://api.github.com/repos/actions/runner/releases/latest | jq -r '.tag_name' | sed -e 's/^v//g')
 echo "latest version: ${GIT_RUNNER_VERSION}"
-curl -Ls https://github.com/actions/runner/releases/download/v${GIT_RUNNER_VERSION}/actions-runner-linux-${RUNNER_PLATFORM}-${GIT_RUNNER_VERSION}.tar.gz | tar -zx
+curl -Ls https://github.com/actions/runner/releases/download/v${GIT_RUNNER_VERSION}/actions-runner-${OS}-${ARCH}-${GIT_RUNNER_VERSION}.tar.gz | tar -zx
 
 # Hacky workaround because the installation script doesn't include a flag for automation to not prompt a non-existent user
 sed -i 's/\$apt_get install/DEBIAN_FRONTEND=noninteractive $apt_get install/g' ./bin/installdependencies.sh
