@@ -21,7 +21,7 @@ docker run -it --rm \
   -e GIT_OWNER="mathew-fleisch" \
   -e GIT_REPO="github-actions-runner" \
   --name "gha-runner" \
-  gha-runner:latest
+  gha-runner:v0.1.0
 
 # From Mac
 docker run -it --rm \
@@ -30,7 +30,7 @@ docker run -it --rm \
   -e GIT_OWNER="mathew-fleisch" \
   -e GIT_REPO="github-actions-runner" \
   --name "gha-runner" \
-  mathewfleisch/github-actions-runner:latest
+  mathewfleisch/github-actions-runner:v0.1.0
 
 
 ```
