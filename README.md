@@ -4,9 +4,11 @@ A container definition for running the Github Actions agent. The agent is instal
 
 ## Build
 
-Note: If you intend on running these containers on an arm based system, they need to be built on an arm based system as well.
+Note: This build method requires the [buildx docker plugin.](https://github.com/docker/buildx) [See this link for more details...](smartling.com/resources/product/building-multi-architecture-docker-images-on-arm-64-bit-aws-graviton2/)
 ```bash
-docker build -t gha-runner .
+docker buildx build \
+  --platform linux/amd64,linux/arm64 \
+  -t mathewfleisch/github-actions-runner:myversion .
 ```
 
 ## Run
@@ -21,7 +23,7 @@ docker run -it --rm \
   -e GIT_OWNER="mathew-fleisch" \
   -e GIT_REPO="github-actions-runner" \
   --name "gha-runner" \
-  gha-runner:v0.1.0
+  mathewfleisch/github-actions-runner:v0.1.0
 
 # From Mac
 docker run -it --rm \
