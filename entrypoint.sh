@@ -66,3 +66,4 @@ echo "./run.sh $*"
 ./run.sh "$*" &
 
 wait $!
+
