@@ -22,6 +22,7 @@ docker run -it --rm \
   -e GIT_PAT="$GIT_TOKEN" \
   -e GIT_OWNER="mathew-fleisch" \
   -e GIT_REPO="github-actions-runner" \
+  -e LABELS="gha-runner" \
   --name "gha-runner" \
   mathewfleisch/github-actions-runner:v0.1.0
 
@@ -31,6 +32,7 @@ docker run -it --rm \
   -e GIT_PAT="$GIT_TOKEN" \
   -e GIT_OWNER="mathew-fleisch" \
   -e GIT_REPO="github-actions-runner" \
+  -e LABELS="gha-runner" \
   --name "gha-runner" \
   mathewfleisch/github-actions-runner:v0.1.0
 

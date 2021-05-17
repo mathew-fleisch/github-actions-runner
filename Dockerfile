@@ -1,6 +1,5 @@
 FROM ubuntu:20.04
 LABEL maintainer="Mathew Fleisch <mathew.fleisch@gmail.com>"
-RUN rm /bin/sh && ln -s /bin/bash /bin/sh
 
 ENV KUBECONFIG_CONTENTS ""
 ENV GIT_PAT ""
@@ -67,7 +66,7 @@ RUN . ${ASDF_DATA_DIR}/asdf.sh  \
 # Source asdf and execute entrypoint
 COPY --chown=github:github entrypoint.sh ./entrypoint.sh
 RUN sudo chmod u+x ./entrypoint.sh
-CMD /bin/sh -c ". ${ASDF_DATA_DIR}/asdf.sh && /home/github/entrypoint.sh"
+CMD /bin/sh -c ". ${ASDF_DATA_DIR}/asdf.sh && sudo chmod 666 /var/run/docker.sock && /home/github/entrypoint.sh"
 
 
 
