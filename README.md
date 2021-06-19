@@ -4,7 +4,7 @@ A container definition for running the Github Actions agent. The agent is instal
 
 ## Build
 
-Note: This build method requires the [buildx docker plugin.](https://github.com/docker/buildx) [See this link for more details...](smartling.com/resources/product/building-multi-architecture-docker-images-on-arm-64-bit-aws-graviton2/)
+Note: This build method requires the [buildx docker plugin.](https://github.com/docker/buildx) [See this link for more details...](https://smartling.com/resources/product/building-multi-architecture-docker-images-on-arm-64-bit-aws-graviton2/)
 ```bash
 docker buildx build \
   --platform linux/amd64,linux/arm64 \
