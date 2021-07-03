@@ -11,6 +11,8 @@ docker buildx build \
   -t mathewfleisch/github-actions-runner:myversion .
 ```
 
+See [this repo](https://github.com/mathew-fleisch/tools) for information about the base container.
+
 ## Run
 
 ```bash
