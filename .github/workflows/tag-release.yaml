@@ -21,4 +21,6 @@ jobs:
         run: |
           export REGISTRY_URL=docker.io
           export REGISTRY_APPNAME=mathewfleisch/github-actions-runner
+          export REPO_OWNER=mathew-fleisch
+          export REPO_NAME=github-actions-runner
           wget -qO- https://raw.githubusercontent.com/mathew-fleisch/tools/main/scripts/tag-release.sh | bash
