@@ -18,7 +18,10 @@ RUN sudo chown github:github -R ${ASDF_DATA_DIR} \
     && . ${ASDF_DATA_DIR}/asdf.sh \
     && asdf update \
     && while IFS= read -r line; do asdf plugin add $(echo "$line" | awk '{print $1}'); done < .tool-versions \
-    && asdf install
+    && asdf install \
+    && docker buildx create --name mbuilder \
+    && docker buildx use mbuilder \
+    && docker buildx inspect --bootstrap
 
 # Source asdf and execute entrypoint
 COPY --chown=github:github entrypoint.sh ./entrypoint.sh
