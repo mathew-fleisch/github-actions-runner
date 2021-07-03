@@ -14,12 +14,10 @@ USER github
 WORKDIR /home/github
 COPY --chown=github:github .tool-versions ./.tool-versions
 COPY --chown=github:github pin ./pin
-RUN sudo rm -rf ${ASDF_DATA_DIR}/.git \
+RUN sudo chown github:github -R ${ASDF_DATA_DIR} \
     && . ${ASDF_DATA_DIR}/asdf.sh \
-    && asdf update
-RUN . ${ASDF_DATA_DIR}/asdf.sh \
-    && while IFS= read -r line; do asdf plugin add $(echo "$line" | awk '{print $1}'); done < .tool-versions
-RUN . ${ASDF_DATA_DIR}/asdf.sh \
+    && asdf update \
+    && while IFS= read -r line; do asdf plugin add $(echo "$line" | awk '{print $1}'); done < .tool-versions \
     && asdf install
 
 # Source asdf and execute entrypoint
