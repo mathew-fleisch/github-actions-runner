@@ -14,7 +14,8 @@ USER github
 WORKDIR /home/github
 COPY --chown=github:github .tool-versions ./.tool-versions
 COPY --chown=github:github pin ./pin
-RUN . ${ASDF_DATA_DIR}/asdf.sh \
+RUN rm -rf .git \
+    && . ${ASDF_DATA_DIR}/asdf.sh \
     && asdf update
 RUN . ${ASDF_DATA_DIR}/asdf.sh \
     && while IFS= read -r line; do asdf plugin add $(echo "$line" | awk '{print $1}'); done < .tool-versions
