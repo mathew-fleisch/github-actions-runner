@@ -14,7 +14,7 @@ USER github
 WORKDIR /home/github
 COPY --chown=github:github .tool-versions ./.tool-versions
 COPY --chown=github:github pin ./pin
-RUN rm -rf .git \
+RUN sudo rm -rf .git \
     && . ${ASDF_DATA_DIR}/asdf.sh \
     && asdf update
 RUN . ${ASDF_DATA_DIR}/asdf.sh \
