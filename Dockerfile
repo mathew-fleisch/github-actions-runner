@@ -18,9 +18,10 @@ RUN sudo chown github:github -R ${ASDF_DATA_DIR} \
     && . ${ASDF_DATA_DIR}/asdf.sh \
     && asdf update \
     && while IFS= read -r line; do asdf plugin add $(echo "$line" | awk '{print $1}'); done < .tool-versions \
-    && asdf install \
-    && mkdir -p .docker \
-    && chown -R github:github .docker \
+    && asdf install
+# Install docker buildx dependencies
+RUN mkdir -p .docker \
+    && sudo chown -R github:github .docker \
     && docker buildx create --name mbuilder \
     && docker buildx use mbuilder \
     && docker buildx inspect --bootstrap
