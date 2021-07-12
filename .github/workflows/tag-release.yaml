@@ -23,5 +23,6 @@ jobs:
           export REGISTRY_APPNAME=mathewfleisch/github-actions-runner
           export REPO_OWNER=mathew-fleisch
           export REPO_NAME=github-actions-runner
+          export REPO_BRANCH=main
           # See the tools repo for more information: https://github.com/mathew-fleisch/tools
           wget -qO- https://raw.githubusercontent.com/mathew-fleisch/tools/main/scripts/tag-release.sh | bash
