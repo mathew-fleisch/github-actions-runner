@@ -6,11 +6,11 @@ name: Release github-actions-runner
 on:
   push:
     tags:
-      - 'v*'
+      - 'disabled*'
 jobs:
   build:
     name: Release github-actions-runner
-    runs-on: self-hosted
+    runs-on: generic-runner
     steps:
       - uses: actions/checkout@v2
       - name: "Release github-actions-runner"
@@ -18,11 +18,11 @@ jobs:
           REGISTRY_USERNAME: ${{ secrets.REGISTRY_USERNAME }}
           REGISTRY_PASSWORD: ${{ secrets.REGISTRY_PASSWORD }}
           GIT_TOKEN: ${{ secrets.GIT_TOKEN }}
+          REGISTRY_URL: docker.io
+          REGISTRY_APPNAME: mathewfleisch/github-actions-runner
+          REPO_OWNER: mathew-fleisch
+          REPO_NAME: github-actions-runner
+          REPO_BRANCH: main
         run: |
-          export REGISTRY_URL=docker.io
-          export REGISTRY_APPNAME=mathewfleisch/github-actions-runner
-          export REPO_OWNER=mathew-fleisch
-          export REPO_NAME=github-actions-runner
-          export REPO_BRANCH=main
           # See the tools repo for more information: https://github.com/mathew-fleisch/tools
           wget -qO- https://raw.githubusercontent.com/mathew-fleisch/tools/main/scripts/tag-release.sh | bash
