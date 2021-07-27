@@ -2,7 +2,7 @@
 # Author:      Mathew Fleisch <mathew.fleisch@gmail.com>
 # Description: This action will build and push a docker container, when triggered by
 #              pushing a new git tag (that starts with the letter 'v').
-name: Build Linter Runner Containers
+name: Build Build Runner Containers
 on:
   push:
     tags:
@@ -10,7 +10,7 @@ on:
 
 jobs:
   build:
-    name: Build and Push Linter Runner container
+    name: Build and Push Build Runner Containers
     runs-on: generic-runner
     steps:
       -
