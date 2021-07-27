@@ -1,4 +1,4 @@
-FROM mathewfleisch/tools:latest
+FROM mathewfleisch/tools:v0.1.2
 LABEL maintainer="Mathew Fleisch <mathew.fleisch@gmail.com>"
 
 ENV KUBECONFIG_CONTENTS ""
