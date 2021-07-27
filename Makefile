@@ -6,3 +6,7 @@ trigger-asdf-update:
 	    --request POST \
 	    --data '{"event_type": "trigger-asdf-update"}' \
 	    https://api.github.com/repos/mathew-fleisch/github-actions-runner/dispatches
+
+.PHONY: build
+build:
+	docker build -t github-actions-runner-local .
