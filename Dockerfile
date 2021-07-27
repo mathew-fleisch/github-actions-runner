@@ -18,7 +18,7 @@ COPY --chown=github:github pin ./pin
 RUN sudo chown github:github -R ${ASDF_DATA_DIR} \
     && . ${ASDF_DATA_DIR}/asdf.sh \
     && asdf update \
-    && echo $(while IFS= read -r line; do asdf plugin add $(echo "$line" | awk '{print $1}'); done < .tool-versions )" \
+    && echo "$(while IFS= read -r line; do asdf plugin add $(echo "$line" | awk '{print $1}'); done < .tool-versions )" \
     && asdf install
 # Install docker buildx dependencies
 RUN mkdir -p .docker \
