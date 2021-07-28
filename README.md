@@ -3,7 +3,7 @@
 A container definition for running the Github Actions agent. The agent is installed in the entrypoint so that it always runs the most up to date version, without having to build a new docker container.
 
 ## Build
-[![Release CI: multi-arch container build & push](https://github.com/mathew-fleisch/github-actions-runner/actions/workflows/tag-release.yaml/badge.svg)](https://github.com/mathew-fleisch/github-actions-runner/actions/workflows/tag-release.yaml)
+[![Release CI: multi-arch container build & push](https://github.com/mathew-fleisch/github-actions-runner/actions/workflows/build-container.yaml/badge.svg)](https://github.com/mathew-fleisch/github-actions-runner/actions/workflows/build-container.yaml)
 [![Update CI: asdf dependency versions](https://github.com/mathew-fleisch/github-actions-runner/actions/workflows/update-asdf-versions.yaml/badge.svg)](https://github.com/mathew-fleisch/github-actions-runner/actions/workflows/update-asdf-versions.yaml)
 [Docker Hub](https://hub.docker.com/r/mathewfleisch/github-actions-runner/tags?page=1&ordering=last_updated)
 
