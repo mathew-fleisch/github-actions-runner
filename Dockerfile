@@ -23,7 +23,7 @@ RUN sudo chown github:github -R ${ASDF_DATA_DIR} \
 # Install docker buildx dependencies
 RUN mkdir -p .docker \
     && sudo chown -R github:github .docker \
-    && docker buildx create --name mbuilder \
+    && docker buildx create --name mbuilder || true \
     && docker buildx use mbuilder \
     && docker buildx inspect --bootstrap
 
