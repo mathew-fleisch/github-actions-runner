@@ -1,6 +1,6 @@
 bats v1.3.0
 dust 0.7.5
 helmfile 0.142.0
-k9s 0.25.0
+k9s 0.25.4
 terraform 0.12.30
 terraform latest
