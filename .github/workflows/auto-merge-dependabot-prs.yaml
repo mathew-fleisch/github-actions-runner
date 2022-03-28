@@ -13,7 +13,9 @@ permissions:
 jobs:
   auto-merge:
     name: Auto-Merge Dependabot PRs
-    runs-on: linter
+    runs-on:
+      - self-hosted
+      - linter
     if: ${{ github.actor == 'dependabot[bot]' }}
     steps:
       - name: Dependabot metadata
