@@ -1,4 +1,4 @@
-FROM mathewfleisch/tools:v0.1.49
+FROM mathewfleisch/tools:v0.1.50
 # based on: ubuntu:20.04 https://github.com/mathew-fleisch/tools
 LABEL maintainer="Mathew Fleisch <mathew.fleisch@gmail.com>"
 
