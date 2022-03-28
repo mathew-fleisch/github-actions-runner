@@ -1,4 +1,5 @@
 FROM mathewfleisch/tools:v0.1.48
+# based on: ubuntu:20.04 https://github.com/mathew-fleisch/tools
 LABEL maintainer="Mathew Fleisch <mathew.fleisch@gmail.com>"
 
 ENV KUBECONFIG_CONTENTS ""
@@ -18,7 +19,10 @@ COPY --chown=github:github pin ./pin
 RUN sudo chown github:github -R ${ASDF_DATA_DIR} \
     && . ${ASDF_DATA_DIR}/asdf.sh \
     && asdf update \
-    && echo "$(while IFS= read -r line; do asdf plugin add $(echo "$line" | awk '{print $1}'); done < .tool-versions )" \
+    && cat .tool-versions \
+        | grep -vE '^#' \
+        | awk '{print $1}' \
+        | xargs -I {} asdf plugin add {} || true \
     && asdf install
 # Install docker buildx dependencies
 RUN mkdir -p .docker \

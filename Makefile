@@ -9,4 +9,4 @@ trigger-asdf-update:
 
 .PHONY: build
 build:
-	docker build -t github-actions-runner-local .
+	docker build -t github-actions-runner .

@@ -10,7 +10,9 @@ on:
 jobs:
   build:
     name: Release github-actions-runner
-    runs-on: generic-runner
+    runs-on:
+      - self-hosted
+      - generic-runner
     steps:
       - uses: actions/checkout@v2
       - name: "Release github-actions-runner"
