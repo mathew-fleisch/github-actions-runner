@@ -1,5 +1,5 @@
-FROM mathewfleisch/tools:v0.1.57
-# based on: ubuntu:20.04 https://github.com/mathew-fleisch/tools
+FROM mathewfleisch/tools:v0.2.0
+# based on: ubuntu:22.04 https://github.com/mathew-fleisch/tools
 LABEL maintainer="Mathew Fleisch <mathew.fleisch@gmail.com>"
 
 ENV KUBECONFIG_CONTENTS ""
@@ -22,6 +22,8 @@ RUN sudo chown github:github -R ${ASDF_DATA_DIR} \
     && cat .tool-versions \
         | grep -vE '^#' \
         | awk '{print $1}' \
+        | sort \
+        | uniq \
         | xargs -I {} asdf plugin add {} || true \
     && asdf install
 # Install docker buildx dependencies
