@@ -1,6 +1,6 @@
 #!/bin/sh
 # shellcheck disable=SC2155,SC2086
-
+. ${ASDF_DATA_DIR}/asdf.sh 
 LABELS="${LABELS:-linter}"
 RUNNER_WORKDIR="${RUNNER_WORKDIR:-_work}"
 
@@ -16,6 +16,14 @@ if [ -z "$GIT_REPO" ]; then
     echo "Missing environment variable github repository name (GIT_REPO)"
     exit 1
 fi
+
+# Install docker buildx dependencies
+mkdir -p .docker \
+    && sudo chmod 666 /var/run/docker.sock \
+    && sudo chown -R github:github .docker \
+    && docker buildx create --name mbuilder \
+    && docker buildx use mbuilder \
+    && docker buildx inspect --bootstrap
 
 # If a kubeconfig env var exists, set it as the default kubeconfig
 if [ -n "$KUBECONFIG_CONTENTS" ]; then

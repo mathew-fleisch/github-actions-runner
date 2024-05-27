@@ -1,4 +1,4 @@
-FROM mathewfleisch/tools:v0.3.2
+FROM mathewfleisch/tools:v0.3.3
 # based on: ubuntu:22.04 https://github.com/mathew-fleisch/tools
 LABEL maintainer="Mathew Fleisch <mathew.fleisch@gmail.com>"
 
@@ -26,16 +26,10 @@ RUN sudo chown github:github -R ${ASDF_DATA_DIR} \
         | uniq \
         | xargs -I {} asdf plugin add {} || true \
     && asdf install
-# Install docker buildx dependencies
-RUN mkdir -p .docker \
-    && sudo chown -R github:github .docker \
-    && docker buildx create --name mbuilder || true \
-    && docker buildx use mbuilder \
-    && docker buildx inspect --bootstrap
 
 # Source asdf and execute entrypoint
 COPY --chown=github:github entrypoint.sh ./entrypoint.sh
-RUN sudo chmod u+x ./entrypoint.sh
-CMD /bin/sh -c ". ${ASDF_DATA_DIR}/asdf.sh && sudo chmod 666 /var/run/docker.sock && /home/github/entrypoint.sh"
+RUN sudo chmod u+x ./entrypoint.sh 
+ENTRYPOINT /home/github/entrypoint.sh
 
 
